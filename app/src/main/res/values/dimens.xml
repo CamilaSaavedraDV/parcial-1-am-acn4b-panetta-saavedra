@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="margen_item">8dp</dimen>
+    <dimen name="margen_pantalla">16dp</dimen>
+    <dimen name="texto_item">16sp</dimen>
+</resources>
