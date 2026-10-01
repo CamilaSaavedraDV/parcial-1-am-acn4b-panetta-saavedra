@@ -55,25 +55,28 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent" />
 
-                <TextView
+                <ImageView
                     android:id="@+id/btnNotificaciones"
-                    android:layout_width="30dp"
-                    android:layout_height="40dp"
-                    android:gravity="center"
-                    android:text="♧"
-                    android:textColor="@color/texto_principal"
-                    android:textSize="22sp"
+                    android:layout_width="22dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="12dp"
+                    android:src="@drawable/bell"
+                    android:scaleType="centerInside"
+                    android:tint="@color/texto_principal"
+                    android:contentDescription="Notificaciones"
                     app:layout_constraintEnd_toStartOf="@id/btnCarrito"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent" />
 
-                <TextView
+                <ImageView
                     android:id="@+id/btnCarrito"
-                    android:layout_width="30dp"
-                    android:layout_height="40dp"
-                    android:gravity="center"
-                    android:text="🛒"
-                    android:textSize="17sp"
+                    android:layout_width="22dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="12dp"
+                    android:src="@drawable/shopping_cart"
+                    android:scaleType="centerInside"
+                    android:tint="@color/texto_principal"
+                    android:contentDescription="Carrito"
                     app:layout_constraintEnd_toStartOf="@id/btnPerfil"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent" />
@@ -84,12 +87,12 @@
                     android:layout_height="34dp"
                     android:src="@drawable/perfil_logo"
                     android:scaleType="centerCrop"
+                    android:contentDescription="Perfil"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -145,7 +148,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/hades" />
+                    android:src="@drawable/hades"
+                    android:contentDescription="Hades" />
 
                 <View
                     android:layout_width="match_parent"
@@ -248,7 +252,6 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-
             <LinearLayout
                 android:id="@+id/contenedorOfertas"
                 android:layout_width="match_parent"
@@ -259,7 +262,6 @@
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
-
 
     <LinearLayout
         android:id="@+id/barraNavegacion"
@@ -279,19 +281,20 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <TextView
-                android:text="⌂"
-                android:textColor="@color/acento"
-                android:textSize="21sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/house"
+                android:scaleType="centerInside"
+                android:tint="@color/acento"
+                android:contentDescription="Inicio" />
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="Inicio"
                 android:textColor="@color/acento"
-                android:textSize="8sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:textSize="8sp" />
 
         </LinearLayout>
 
@@ -302,19 +305,20 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <TextView
-                android:text="♧"
-                android:textColor="@color/texto_principal"
-                android:textSize="21sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/store"
+                android:scaleType="centerInside"
+                android:tint="@color/texto_principal"
+                android:contentDescription="Tienda" />
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="Tienda"
                 android:textColor="@color/texto_principal"
-                android:textSize="8sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:textSize="8sp" />
 
         </LinearLayout>
 
@@ -325,19 +329,20 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <TextView
-                android:text="▥"
-                android:textColor="@color/texto_principal"
-                android:textSize="21sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:src="@drawable/library_big"
+                android:scaleType="centerInside"
+                android:tint="@color/texto_principal"
+                android:contentDescription="Biblioteca" />
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:text="Biblioteca"
                 android:textColor="@color/texto_principal"
-                android:textSize="8sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:textSize="8sp" />
 
         </LinearLayout>
 

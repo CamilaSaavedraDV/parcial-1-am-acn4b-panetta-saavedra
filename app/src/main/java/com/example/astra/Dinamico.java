@@ -49,72 +49,44 @@ public class Dinamico {
             R.drawable.terraria
     };
 
-
     public static void iniciar(Activity activity) {
 
-        LinearLayout contenedor =
-                activity.findViewById(R.id.contenedorOfertas);
-
-        EditText buscador =
-                activity.findViewById(R.id.buscador);
-
-        TextView verTodos =
-                activity.findViewById(R.id.verTodos);
-
-        TextView btnCarrito =
-                activity.findViewById(R.id.btnCarrito);
-
+        LinearLayout contenedor = activity.findViewById(R.id.contenedorOfertas);
+        EditText buscador = activity.findViewById(R.id.buscador);
+        TextView verTodos = activity.findViewById(R.id.verTodos);
+        ImageView btnNotificaciones = activity.findViewById(R.id.btnNotificaciones);
+        ImageView btnCarrito = activity.findViewById(R.id.btnCarrito);
 
         cargarOfertas(activity, contenedor);
-
         configurarBuscador(buscador, contenedor);
 
-
         verTodos.setOnClickListener(v -> {
-
             buscador.setText("");
-
-            Toast.makeText(
-                    activity,
-                    "Mostrando todos los juegos",
-                    Toast.LENGTH_SHORT
-            ).show();
-
+            Toast.makeText(activity, "Mostrando todos los juegos", Toast.LENGTH_SHORT).show();
         });
 
+        btnNotificaciones.setOnClickListener(v -> {
+            Toast.makeText(activity, "Notificaciones", Toast.LENGTH_SHORT).show();
+        });
 
         btnCarrito.setOnClickListener(v -> {
-
-            Toast.makeText(
-                    activity,
-                    "Carrito",
-                    Toast.LENGTH_SHORT
-            ).show();
-
+            Toast.makeText(activity, "Carrito", Toast.LENGTH_SHORT).show();
         });
     }
 
-
-    private static void cargarOfertas(
-            Activity activity,
-            LinearLayout contenedor) {
+    private static void cargarOfertas(Activity activity, LinearLayout contenedor) {
 
         contenedor.removeAllViews();
 
         LinearLayout fila = null;
 
-
         for (int i = 0; i < JUEGOS.length; i++) {
 
-            // Cada fila tiene 2 juegos
             if (i % 2 == 0) {
 
                 fila = new LinearLayout(activity);
-
                 fila.setOrientation(LinearLayout.HORIZONTAL);
-
                 fila.setGravity(Gravity.CENTER);
-
 
                 LinearLayout.LayoutParams filaParams =
                         new LinearLayout.LayoutParams(
@@ -127,71 +99,39 @@ public class Dinamico {
                 contenedor.addView(fila, filaParams);
             }
 
+            View tarjeta = LayoutInflater.from(activity)
+                    .inflate(R.layout.item_oferta, fila, false);
 
-            View tarjeta = LayoutInflater
-                    .from(activity)
-                    .inflate(
-                            R.layout.item_oferta,
-                            fila,
-                            false
-                    );
-
-
-            ImageView imagen =
-                    tarjeta.findViewById(R.id.imgJuego);
-
-            TextView nombre =
-                    tarjeta.findViewById(R.id.tvNombreJuego);
-
-            TextView genero =
-                    tarjeta.findViewById(R.id.tvGenero);
-
-            TextView descuento =
-                    tarjeta.findViewById(R.id.tvDescuento);
-
-            TextView precio =
-                    tarjeta.findViewById(R.id.tvPrecio);
-
-            TextView agregar =
-                    tarjeta.findViewById(R.id.btnAgregarJuego);
-
+            ImageView imagen = tarjeta.findViewById(R.id.imgJuego);
+            TextView nombre = tarjeta.findViewById(R.id.tvNombreJuego);
+            TextView genero = tarjeta.findViewById(R.id.tvGenero);
+            TextView descuento = tarjeta.findViewById(R.id.tvDescuento);
+            TextView precio = tarjeta.findViewById(R.id.tvPrecio);
+            TextView agregar = tarjeta.findViewById(R.id.btnAgregarJuego);
 
             imagen.setImageResource(IMAGENES[i]);
-
             nombre.setText(JUEGOS[i]);
-
             genero.setText(GENEROS[i]);
-
             descuento.setText(DESCUENTOS[i]);
-
             precio.setText("$ " + PRECIOS[i]);
-
 
             final int posicion = i;
 
+            agregar.setOnClickListener(v ->
+                    Toast.makeText(
+                            activity,
+                            JUEGOS[posicion] + " agregado al carrito",
+                            Toast.LENGTH_SHORT
+                    ).show()
+            );
 
-            agregar.setOnClickListener(v -> {
-
-                Toast.makeText(
-                        activity,
-                        JUEGOS[posicion] +
-                                " agregado al carrito",
-                        Toast.LENGTH_SHORT
-                ).show();
-
-            });
-
-
-            tarjeta.setOnClickListener(v -> {
-
-                Toast.makeText(
-                        activity,
-                        JUEGOS[posicion],
-                        Toast.LENGTH_SHORT
-                ).show();
-
-            });
-
+            tarjeta.setOnClickListener(v ->
+                    Toast.makeText(
+                            activity,
+                            JUEGOS[posicion],
+                            Toast.LENGTH_SHORT
+                    ).show()
+            );
 
             LinearLayout.LayoutParams tarjetaParams =
                     new LinearLayout.LayoutParams(
@@ -206,96 +146,73 @@ public class Dinamico {
         }
     }
 
-
     private static void configurarBuscador(
             EditText buscador,
-            LinearLayout contenedor) {
+            LinearLayout contenedor
+    ) {
 
-        buscador.addTextChangedListener(
-                new TextWatcher() {
+        buscador.addTextChangedListener(new TextWatcher() {
 
-                    @Override
-                    public void beforeTextChanged(
-                            CharSequence s,
-                            int start,
-                            int count,
-                            int after) {
-                    }
+            @Override
+            public void beforeTextChanged(
+                    CharSequence s,
+                    int start,
+                    int count,
+                    int after
+            ) {
+            }
 
+            @Override
+            public void onTextChanged(
+                    CharSequence s,
+                    int start,
+                    int before,
+                    int count
+            ) {
 
-                    @Override
-                    public void onTextChanged(
-                            CharSequence s,
-                            int start,
-                            int before,
-                            int count) {
+                String texto = s.toString().trim().toLowerCase();
 
-                        String texto =
-                                s.toString()
-                                        .trim()
-                                        .toLowerCase();
+                for (int filaIndex = 0;
+                     filaIndex < contenedor.getChildCount();
+                     filaIndex++) {
 
+                    LinearLayout fila =
+                            (LinearLayout) contenedor.getChildAt(filaIndex);
 
-                        for (
-                                int filaIndex = 0;
-                                filaIndex < contenedor.getChildCount();
-                                filaIndex++
-                        ) {
+                    for (int tarjetaIndex = 0;
+                         tarjetaIndex < fila.getChildCount();
+                         tarjetaIndex++) {
 
-                            LinearLayout fila =
-                                    (LinearLayout)
-                                            contenedor.getChildAt(
-                                                    filaIndex
-                                            );
+                        View tarjeta =
+                                fila.getChildAt(tarjetaIndex);
 
+                        int posicion =
+                                filaIndex * 2 + tarjetaIndex;
 
-                            for (
-                                    int tarjetaIndex = 0;
-                                    tarjetaIndex < fila.getChildCount();
-                                    tarjetaIndex++
-                            ) {
-
-                                View tarjeta =
-                                        fila.getChildAt(
-                                                tarjetaIndex
-                                        );
-
-
-                                int posicion =
-                                        filaIndex * 2
-                                                + tarjetaIndex;
-
-
-                                if (posicion >= JUEGOS.length) {
-                                    continue;
-                                }
-
-
-                                boolean coincide =
-                                        JUEGOS[posicion]
-                                                .toLowerCase()
-                                                .contains(texto)
-                                                ||
-                                                GENEROS[posicion]
-                                                        .toLowerCase()
-                                                        .contains(texto);
-
-
-                                tarjeta.setVisibility(
-                                        coincide
-                                                ? View.VISIBLE
-                                                : View.GONE
-                                );
-                            }
+                        if (posicion >= JUEGOS.length) {
+                            continue;
                         }
-                    }
 
+                        boolean coincide =
+                                JUEGOS[posicion]
+                                        .toLowerCase()
+                                        .contains(texto)
+                                        || GENEROS[posicion]
+                                        .toLowerCase()
+                                        .contains(texto);
 
-                    @Override
-                    public void afterTextChanged(
-                            Editable s) {
+                        tarjeta.setVisibility(
+                                coincide
+                                        ? View.VISIBLE
+                                        : View.GONE
+                        );
                     }
                 }
-        );
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
     }
 }
