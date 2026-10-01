@@ -35,4 +35,7 @@
     <string name="juego_agregado">%1$s agregado al carrito</string>
     <string name="sin_resultados">No encontramos juegos con ese nombre</string>
     <string name="ver_todos_mensaje">Mostrando todos los juegos</string>
+
+    <string name="costo_total">Costo total:</string>
+    <string name="cerrar">Cerrar</string>
 </resources>

@@ -14,4 +14,6 @@
     <color name="barra_navegacion">#100A17</color>
     <color name="texto_boton">#1B012C</color>
 
+    <color name="fondo_popup">#2A0148</color>
+
 </resources>
