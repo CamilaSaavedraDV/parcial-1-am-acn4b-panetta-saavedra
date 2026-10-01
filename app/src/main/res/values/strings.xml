@@ -2,7 +2,8 @@
     <string name="app_name">Astra</string>
     <string name="boton_agregar">Agregar juego al carrito</string>
     <string name="boton_vaciar">Vaciar carrito</string>
+    <string name="boton_quitar">Quitar</string>
     <string name="carrito_vacio">Tu carrito está vacío</string>
     <string name="carrito_total">Total: US$ %1$.2f</string>
-    <string name="item_juego">%1$s - US$ %2$.2f</string>
+    <string name="precio_juego">US$ %1$.2f</string>
 </resources>
