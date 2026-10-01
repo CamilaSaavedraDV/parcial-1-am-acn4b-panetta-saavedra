@@ -3,15 +3,20 @@ package com.example.astra;
 import android.app.Activity;
 import android.content.res.Resources;
 import android.graphics.Typeface;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.core.content.ContextCompat;
 import androidx.core.widget.NestedScrollView;
+import java.util.function.IntConsumer;
 
 public class Dinamico {
 
@@ -92,9 +97,7 @@ public class Dinamico {
         };
         actualizar.run();
 
-        btnAgregar.setOnClickListener(v -> {
-            int i = cantidad[0] % JUEGOS.length;
-            cantidad[0]++;
+        IntConsumer agregar = i -> {
             double precio = PRECIOS[i];
             total[0] += precio;
 
@@ -114,12 +117,87 @@ public class Dinamico {
 
             carrito.addView(tarjeta);
             actualizar.run();
+        };
+
+        btnAgregar.setOnClickListener(v -> {
+            agregar.accept(cantidad[0] % JUEGOS.length);
+            cantidad[0]++;
         });
 
         btnVaciar.setOnClickListener(v -> {
             carrito.removeAllViews();
             cantidad[0] = 0;
             actualizar.run();
+        });
+
+        configurarPantallaPrincipal(activity, agregar, scroll, tvTitulo);
+    }
+
+    private static void configurarPantallaPrincipal(Activity activity, IntConsumer agregar,
+                                                    NestedScrollView scroll, View tituloCarrito) {
+        LinearLayout ofertas = activity.findViewById(R.id.contenedorOfertas);
+        EditText buscador = activity.findViewById(R.id.buscador);
+        View verTodos = activity.findViewById(R.id.verTodos);
+        View btnCarrito = activity.findViewById(R.id.btnCarrito);
+
+        TextView sinResultados = crearTexto(activity, R.color.texto_secundario,
+                R.dimen.texto_item, false);
+        sinResultados.setText(R.string.sin_resultados);
+        sinResultados.setGravity(Gravity.CENTER);
+        sinResultados.setVisibility(View.GONE);
+        ofertas.addView(sinResultados, new LinearLayout.LayoutParams(
+                activity.getResources().getDimensionPixelSize(R.dimen.ancho_destacado),
+                LinearLayout.LayoutParams.MATCH_PARENT));
+
+        int cantidadOfertas = ofertas.getChildCount() - 1;
+
+        for (int k = 0; k < cantidadOfertas; k++) {
+            TextView tarjeta = (TextView) ofertas.getChildAt(k);
+            String nombre = tarjeta.getText().toString().split("\n")[0];
+            tarjeta.setOnClickListener(v -> {
+                for (int i = 0; i < JUEGOS.length; i++) {
+                    if (JUEGOS[i].equals(nombre)) {
+                        agregar.accept(i);
+                        Toast.makeText(activity,
+                                activity.getString(R.string.juego_agregado, nombre),
+                                Toast.LENGTH_SHORT).show();
+                        break;
+                    }
+                }
+            });
+        }
+
+        btnCarrito.setOnClickListener(v -> scroll.smoothScrollTo(0, tituloCarrito.getTop()));
+
+        buscador.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String texto = s.toString().trim().toLowerCase();
+                int visibles = 0;
+                for (int k = 0; k < cantidadOfertas; k++) {
+                    TextView tarjeta = (TextView) ofertas.getChildAt(k);
+                    String nombre = tarjeta.getText().toString().split("\n")[0].toLowerCase();
+                    boolean coincide = nombre.contains(texto);
+                    tarjeta.setVisibility(coincide ? View.VISIBLE : View.GONE);
+                    if (coincide) {
+                        visibles++;
+                    }
+                }
+                sinResultados.setVisibility(visibles == 0 ? View.VISIBLE : View.GONE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+
+        verTodos.setOnClickListener(v -> {
+            buscador.setText("");
+            Toast.makeText(activity, R.string.ver_todos_mensaje, Toast.LENGTH_SHORT).show();
         });
     }
 
