@@ -33,5 +33,7 @@
         android:id="@+id/btnQuitar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/boton_quitar" />
+        android:background="@color/acento_boton"
+        android:text="@string/boton_quitar"
+        android:textColor="@color/texto_boton" />
 </LinearLayout>

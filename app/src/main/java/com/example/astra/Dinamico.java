@@ -82,7 +82,7 @@ public class Dinamico {
     private static Button crearBoton(Activity activity, int textoRes) {
         Button boton = new Button(activity);
         boton.setText(textoRes);
-        boton.setTextColor(ContextCompat.getColor(activity, R.color.texto_principal));
+        boton.setTextColor(ContextCompat.getColor(activity, R.color.texto_boton));
         boton.setBackgroundColor(ContextCompat.getColor(activity, R.color.acento_boton));
         return boton;
     }

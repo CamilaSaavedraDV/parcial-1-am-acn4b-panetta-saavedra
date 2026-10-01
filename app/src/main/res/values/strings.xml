@@ -1,5 +1,29 @@
 <resources>
     <string name="app_name">Astra</string>
+
+    <string name="logo">✦ ASTRA</string>
+    <string name="buscador_hint">Buscar juegos, géneros, etc.</string>
+    <string name="titulo_destacados">Destacados</string>
+    <string name="titulo_ofertas">Juegos en oferta</string>
+    <string name="ver_todos">Ver todos</string>
+    <string name="menu_inicio">\nInicio</string>
+    <string name="menu_tienda">\nTienda</string>
+    <string name="menu_biblioteca">\nBiblioteca</string>
+
+    <string name="desc_carrito">Carrito</string>
+    <string name="desc_notificaciones">Notificaciones</string>
+    <string name="desc_perfil">Perfil</string>
+
+    <string name="destacado_1">Hades\nLo más jugado de la semana</string>
+    <string name="destacado_2">Stardew Valley\nElegido por la comunidad</string>
+
+    <string name="oferta_1">Hollow Knight\n-30%</string>
+    <string name="oferta_2">Minecraft\n-50%</string>
+    <string name="oferta_3">Stardew Valley\n-20%</string>
+    <string name="oferta_4">Hades\n-40%</string>
+    <string name="oferta_5">Celeste\n-60%</string>
+    <string name="oferta_6">Terraria\n-25%</string>
+
     <string name="boton_agregar">Agregar juego al carrito</string>
     <string name="boton_vaciar">Vaciar carrito</string>
     <string name="boton_quitar">Quitar</string>

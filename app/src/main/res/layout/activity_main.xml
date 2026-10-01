@@ -4,98 +4,98 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#151022">
+    android:background="@color/fondo_app">
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollPrincipal"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/barraNavegacion"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="@dimen/margen_pantalla">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="55dp">
+                android:layout_height="@dimen/alto_encabezado">
 
                 <TextView
                     android:id="@+id/logoAstra"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="✦ ASTRA"
-                    android:textColor="#FFFFFF"
-                    android:textSize="24sp"
+                    android:text="@string/logo"
+                    android:textColor="@color/acento"
+                    android:textSize="@dimen/texto_logo"
                     android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageButton
                     android:id="@+id/btnCarrito"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
+                    android:layout_width="@dimen/tamano_icono"
+                    android:layout_height="@dimen/tamano_icono"
                     android:background="@android:color/transparent"
+                    android:contentDescription="@string/desc_carrito"
                     android:src="@android:drawable/ic_menu_view"
-                    android:contentDescription="Carrito"
                     app:layout_constraintEnd_toStartOf="@id/btnNotificaciones"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageButton
                     android:id="@+id/btnNotificaciones"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
+                    android:layout_width="@dimen/tamano_icono"
+                    android:layout_height="@dimen/tamano_icono"
                     android:background="@android:color/transparent"
+                    android:contentDescription="@string/desc_notificaciones"
                     android:src="@android:drawable/ic_dialog_info"
-                    android:contentDescription="Notificaciones"
                     app:layout_constraintEnd_toStartOf="@id/btnPerfil"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageButton
                     android:id="@+id/btnPerfil"
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
+                    android:layout_width="@dimen/tamano_icono"
+                    android:layout_height="@dimen/tamano_icono"
                     android:background="@android:color/transparent"
+                    android:contentDescription="@string/desc_perfil"
                     android:src="@android:drawable/ic_menu_myplaces"
-                    android:contentDescription="Perfil"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <EditText
                 android:id="@+id/buscador"
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:layout_marginTop="12dp"
-                android:background="#28203D"
-                android:hint="Buscar juegos, géneros, etc."
-                android:paddingStart="16dp"
-                android:paddingEnd="16dp"
-                android:textColor="#FFFFFF"
-                android:textColorHint="#AAA2B8"
-                android:singleLine="true"/>
+                android:layout_height="@dimen/alto_buscador"
+                android:layout_marginTop="@dimen/margen_tarjetas"
+                android:background="@color/fondo_tarjeta"
+                android:hint="@string/buscador_hint"
+                android:paddingStart="@dimen/margen_pantalla"
+                android:paddingEnd="@dimen/margen_pantalla"
+                android:singleLine="true"
+                android:textColor="@color/texto_principal"
+                android:textColorHint="@color/texto_secundario" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="Próximamente"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                android:textStyle="bold"/>
+                android:layout_marginTop="@dimen/margen_seccion"
+                android:text="@string/titulo_destacados"
+                android:textColor="@color/texto_principal"
+                android:textSize="@dimen/texto_titulo"
+                android:textStyle="bold" />
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
-                android:layout_height="190dp"
-                android:layout_marginTop="12dp"
+                android:layout_height="@dimen/alto_destacados"
+                android:layout_marginTop="@dimen/margen_tarjetas"
                 android:scrollbars="none">
 
                 <LinearLayout
@@ -104,25 +104,25 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="300dp"
+                        android:layout_width="@dimen/ancho_destacado"
                         android:layout_height="match_parent"
-                        android:background="#332653"
+                        android:background="@color/fondo_tarjeta"
                         android:gravity="center"
-                        android:text="JUEGO EN LANZAMIENTO"
-                        android:textColor="#FFFFFF"
-                        android:textSize="18sp"
-                        android:textStyle="bold"/>
+                        android:text="@string/destacado_1"
+                        android:textColor="@color/texto_principal"
+                        android:textSize="@dimen/texto_destacado"
+                        android:textStyle="bold" />
 
                     <TextView
-                        android:layout_width="300dp"
+                        android:layout_width="@dimen/ancho_destacado"
                         android:layout_height="match_parent"
-                        android:layout_marginStart="12dp"
-                        android:background="#3D2C60"
+                        android:layout_marginStart="@dimen/margen_tarjetas"
+                        android:background="@color/fondo_tarjeta"
                         android:gravity="center"
-                        android:text="PRÓXIMO LANZAMIENTO"
-                        android:textColor="#FFFFFF"
-                        android:textSize="18sp"
-                        android:textStyle="bold"/>
+                        android:text="@string/destacado_2"
+                        android:textColor="@color/texto_principal"
+                        android:textSize="@dimen/texto_destacado"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
@@ -130,37 +130,37 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:layout_marginTop="24dp">
+                android:layout_height="@dimen/alto_titulo_seccion"
+                android:layout_marginTop="@dimen/margen_seccion">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Juegos en oferta"
-                    android:textColor="#FFFFFF"
-                    android:textSize="20sp"
+                    android:text="@string/titulo_ofertas"
+                    android:textColor="@color/texto_principal"
+                    android:textSize="@dimen/texto_titulo"
                     android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/verTodos"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Ver todos"
-                    android:textColor="#B58CFF"
-                    android:textSize="14sp"
+                    android:text="@string/ver_todos"
+                    android:textColor="@color/acento"
+                    android:textSize="@dimen/texto_chico"
                     android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <HorizontalScrollView
                 android:layout_width="match_parent"
-                android:layout_height="220dp"
+                android:layout_height="@dimen/alto_ofertas"
                 android:scrollbars="none">
 
                 <LinearLayout
@@ -169,33 +169,63 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:layout_width="150dp"
-                        android:layout_height="200dp"
-                        android:background="#28203D"
+                        android:layout_width="@dimen/ancho_oferta"
+                        android:layout_height="@dimen/alto_oferta"
+                        android:background="@color/fondo_tarjeta"
                         android:gravity="center"
-                        android:text="Juego 1\n-30%"
-                        android:textColor="#FFFFFF"
-                        android:textSize="16sp" />
+                        android:text="@string/oferta_1"
+                        android:textColor="@color/texto_principal"
+                        android:textSize="@dimen/texto_item" />
 
                     <TextView
-                        android:layout_width="150dp"
-                        android:layout_height="200dp"
-                        android:layout_marginStart="12dp"
-                        android:background="#28203D"
+                        android:layout_width="@dimen/ancho_oferta"
+                        android:layout_height="@dimen/alto_oferta"
+                        android:layout_marginStart="@dimen/margen_tarjetas"
+                        android:background="@color/fondo_tarjeta"
                         android:gravity="center"
-                        android:text="Juego 2\n-50%"
-                        android:textColor="#FFFFFF"
-                        android:textSize="16sp"/>
+                        android:text="@string/oferta_2"
+                        android:textColor="@color/texto_principal"
+                        android:textSize="@dimen/texto_item" />
 
                     <TextView
-                        android:layout_width="150dp"
-                        android:layout_height="200dp"
-                        android:layout_marginStart="12dp"
-                        android:background="#28203D"
+                        android:layout_width="@dimen/ancho_oferta"
+                        android:layout_height="@dimen/alto_oferta"
+                        android:layout_marginStart="@dimen/margen_tarjetas"
+                        android:background="@color/fondo_tarjeta"
                         android:gravity="center"
-                        android:text="Juego 3\n-20%"
-                        android:textColor="#FFFFFF"
-                        android:textSize="16sp"/>
+                        android:text="@string/oferta_3"
+                        android:textColor="@color/texto_principal"
+                        android:textSize="@dimen/texto_item" />
+
+                    <TextView
+                        android:layout_width="@dimen/ancho_oferta"
+                        android:layout_height="@dimen/alto_oferta"
+                        android:layout_marginStart="@dimen/margen_tarjetas"
+                        android:background="@color/fondo_tarjeta"
+                        android:gravity="center"
+                        android:text="@string/oferta_4"
+                        android:textColor="@color/texto_principal"
+                        android:textSize="@dimen/texto_item" />
+
+                    <TextView
+                        android:layout_width="@dimen/ancho_oferta"
+                        android:layout_height="@dimen/alto_oferta"
+                        android:layout_marginStart="@dimen/margen_tarjetas"
+                        android:background="@color/fondo_tarjeta"
+                        android:gravity="center"
+                        android:text="@string/oferta_5"
+                        android:textColor="@color/texto_principal"
+                        android:textSize="@dimen/texto_item" />
+
+                    <TextView
+                        android:layout_width="@dimen/ancho_oferta"
+                        android:layout_height="@dimen/alto_oferta"
+                        android:layout_marginStart="@dimen/margen_tarjetas"
+                        android:background="@color/fondo_tarjeta"
+                        android:gravity="center"
+                        android:text="@string/oferta_6"
+                        android:textColor="@color/texto_principal"
+                        android:textSize="@dimen/texto_item" />
 
                 </LinearLayout>
 
@@ -208,40 +238,40 @@
     <LinearLayout
         android:id="@+id/barraNavegacion"
         android:layout_width="0dp"
-        android:layout_height="70dp"
-        android:background="#201832"
+        android:layout_height="@dimen/alto_barra"
+        android:background="@color/barra_navegacion"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="\nInicio"
-            android:textColor="#B58CFF"
-            android:textSize="14sp"/>
+            android:text="@string/menu_inicio"
+            android:textColor="@color/acento"
+            android:textSize="@dimen/texto_chico" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="\nTienda"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp"/>
+            android:text="@string/menu_tienda"
+            android:textColor="@color/texto_principal"
+            android:textSize="@dimen/texto_chico" />
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="\nBiblioteca"
-            android:textColor="#FFFFFF"
-            android:textSize="14sp"/>
+            android:text="@string/menu_biblioteca"
+            android:textColor="@color/texto_principal"
+            android:textSize="@dimen/texto_chico" />
 
     </LinearLayout>
 
