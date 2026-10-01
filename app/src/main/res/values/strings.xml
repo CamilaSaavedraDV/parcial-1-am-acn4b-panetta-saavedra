@@ -31,4 +31,8 @@
     <string name="carrito_total">Total: US$ %1$.2f</string>
     <string name="precio_juego">US$ %1$.2f</string>
     <string name="titulo_carrito">Mi carrito</string>
+
+    <string name="juego_agregado">%1$s agregado al carrito</string>
+    <string name="sin_resultados">No encontramos juegos con ese nombre</string>
+    <string name="ver_todos_mensaje">Mostrando todos los juegos</string>
 </resources>
