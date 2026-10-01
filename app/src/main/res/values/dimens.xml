@@ -2,5 +2,21 @@
 <resources>
     <dimen name="margen_item">8dp</dimen>
     <dimen name="margen_pantalla">16dp</dimen>
+    <dimen name="margen_tarjetas">12dp</dimen>
+    <dimen name="margen_seccion">24dp</dimen>
+    <dimen name="alto_encabezado">55dp</dimen>
+    <dimen name="alto_buscador">52dp</dimen>
+    <dimen name="alto_titulo_seccion">45dp</dimen>
+    <dimen name="alto_destacados">190dp</dimen>
+    <dimen name="ancho_destacado">300dp</dimen>
+    <dimen name="alto_ofertas">220dp</dimen>
+    <dimen name="ancho_oferta">150dp</dimen>
+    <dimen name="alto_oferta">200dp</dimen>
+    <dimen name="alto_barra">70dp</dimen>
+    <dimen name="tamano_icono">45dp</dimen>
+    <dimen name="texto_logo">24sp</dimen>
+    <dimen name="texto_titulo">20sp</dimen>
+    <dimen name="texto_destacado">18sp</dimen>
     <dimen name="texto_item">16sp</dimen>
+    <dimen name="texto_chico">14sp</dimen>
 </resources>

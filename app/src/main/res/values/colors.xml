@@ -7,11 +7,13 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="fondo_app">#151022</color>
-    <color name="fondo_tarjeta">#28203D</color>
-    <color name="barra_navegacion">#201832</color>
-    <color name="acento">#B58CFF</color>
-    <color name="acento_boton">#7C4DFF</color>
-    <color name="texto_principal">#FFFFFF</color>
-    <color name="texto_secundario">#AAA2B8</color>
+
+    <color name="fondo_app">#290044</color>
+    <color name="fondo_tarjeta">#6A00A2</color>
+    <color name="barra_navegacion">#000000</color>
+    <color name="acento">#FCCD30</color>
+    <color name="acento_boton">#FCCD30</color>
+    <color name="texto_principal">#E6DFDF</color>
+    <color name="texto_secundario">#E6DFDF</color>
+    <color name="texto_boton">#000000</color>
 </resources>
