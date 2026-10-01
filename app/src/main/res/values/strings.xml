@@ -24,10 +24,11 @@
     <string name="oferta_5">Celeste\n-60%</string>
     <string name="oferta_6">Terraria\n-25%</string>
 
-    <string name="boton_agregar">Agregar juego al carrito</string>
-    <string name="boton_vaciar">Vaciar carrito</string>
+    <string name="boton_agregar">Agregar juego</string>
+    <string name="boton_vaciar">Vaciar</string>
     <string name="boton_quitar">Quitar</string>
     <string name="carrito_vacio">Tu carrito está vacío</string>
     <string name="carrito_total">Total: US$ %1$.2f</string>
     <string name="precio_juego">US$ %1$.2f</string>
+    <string name="titulo_carrito">Mi carrito</string>
 </resources>

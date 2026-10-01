@@ -8,6 +8,17 @@
     android:orientation="horizontal"
     android:padding="@dimen/margen_pantalla">
 
+    <TextView
+        android:id="@+id/tvInicial"
+        android:layout_width="@dimen/tamano_inicial"
+        android:layout_height="@dimen/tamano_inicial"
+        android:layout_marginEnd="@dimen/margen_pantalla"
+        android:background="@drawable/bg_inicial"
+        android:gravity="center"
+        android:textColor="@color/texto_boton"
+        android:textSize="@dimen/texto_inicial"
+        android:textStyle="bold" />
+
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -33,7 +44,14 @@
         android:id="@+id/btnQuitar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@color/acento_boton"
+        android:background="@drawable/bg_boton_borde"
+        android:minWidth="0dp"
+        android:minHeight="0dp"
+        android:paddingStart="@dimen/margen_pantalla"
+        android:paddingTop="@dimen/margen_item"
+        android:paddingEnd="@dimen/margen_pantalla"
+        android:paddingBottom="@dimen/margen_item"
         android:text="@string/boton_quitar"
-        android:textColor="@color/texto_boton" />
+        android:textAllCaps="false"
+        android:textColor="@color/acento" />
 </LinearLayout>
