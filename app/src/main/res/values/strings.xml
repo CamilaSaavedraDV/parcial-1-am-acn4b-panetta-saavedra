@@ -2,6 +2,7 @@
     <string name="app_name">Astra</string>
 
     <string name="logo">✦ ASTRA</string>
+    <string name="logo_texto">ASTRA</string>
     <string name="buscador_hint">Buscar juegos, géneros, etc.</string>
     <string name="titulo_destacados">Destacados</string>
     <string name="titulo_ofertas">Juegos en oferta</string>
@@ -9,6 +10,10 @@
     <string name="menu_inicio">\nInicio</string>
     <string name="menu_tienda">\nTienda</string>
     <string name="menu_biblioteca">\nBiblioteca</string>
+
+    <string name="nav_inicio">Inicio</string>
+    <string name="nav_tienda">Tienda</string>
+    <string name="nav_biblioteca">Biblioteca</string>
 
     <string name="desc_carrito">Carrito</string>
     <string name="desc_notificaciones">Notificaciones</string>
@@ -33,9 +38,45 @@
     <string name="titulo_carrito">Mi carrito</string>
 
     <string name="juego_agregado">%1$s agregado al carrito</string>
+    <string name="juego_ya_en_carrito">%1$s ya está en el carrito</string>
+    <string name="juego_eliminado">%1$s eliminado del carrito</string>
     <string name="sin_resultados">No encontramos juegos con ese nombre</string>
     <string name="ver_todos_mensaje">Mostrando todos los juegos</string>
 
     <string name="costo_total">Costo total:</string>
     <string name="cerrar">Cerrar</string>
+
+    <string name="proximamente">Próximamente</string>
+    <string name="notificaciones_toast">Notificaciones</string>
+
+    <!-- Tienda -->
+    <string name="tienda_titulo">Tienda</string>
+    <string name="tienda_buscador_hint">Buscar juego, género...</string>
+    <string name="banner_elden_texto">Forja tu leyenda en la Tierra Media.</string>
+    <string name="boton_ver_mas">Ver más</string>
+    <string name="titulo_mas_vendidos">Más vendidos</string>
+    <string name="titulo_gratuitos">Juegos gratuitos</string>
+    <string name="ver_todos_flecha">Ver todos  →</string>
+    <string name="precio_gratis">Gratis</string>
+
+    <!-- Detalle -->
+    <string name="boton_agregar_carrito">Agregar al carrito</string>
+    <string name="volver">←</string>
+
+    <!-- Perfil -->
+    <string name="editar_perfil">Editar perfil</string>
+    <string name="perfil_deseados">Lista de deseados</string>
+    <string name="perfil_historial">Historial de compras</string>
+    <string name="perfil_configuracion">Configuración</string>
+    <string name="perfil_ayuda">Ayuda y soporte</string>
+    <string name="perfil_cerrar_sesion">Cerrar sesión</string>
+    <string name="cerrar_sesion_mensaje">¿Seguro que querés cerrar sesión?</string>
+    <string name="sesion_cerrada">Sesión cerrada</string>
+    <string name="seccion_proximamente">%1$s: próximamente</string>
+    <string name="hint_nombre">Nombre</string>
+    <string name="hint_usuario">Usuario</string>
+    <string name="guardar">Guardar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="datos_vacios">Completá el nombre y el usuario</string>
+    <string name="perfil_actualizado">Perfil actualizado</string>
 </resources>

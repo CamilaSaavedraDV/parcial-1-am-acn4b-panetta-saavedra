@@ -22,4 +22,14 @@
     <dimen name="alto_boton">48dp</dimen>
     <dimen name="tamano_inicial">44dp</dimen>
     <dimen name="texto_inicial">18sp</dimen>
+
+    <!-- Tienda, Detalle y Perfil -->
+    <dimen name="ancho_tarjeta_tienda">140dp</dimen>
+    <dimen name="alto_imagen_tarjeta_tienda">110dp</dimen>
+    <dimen name="alto_banner_tienda">150dp</dimen>
+    <dimen name="alto_imagen_detalle">260dp</dimen>
+    <dimen name="tamano_avatar">96dp</dimen>
+    <dimen name="alto_barra_navegacion">60dp</dimen>
+    <dimen name="texto_titulo_pantalla">24sp</dimen>
+    <dimen name="texto_seccion">16sp</dimen>
 </resources>
