@@ -38,4 +38,14 @@
 
     <string name="costo_total">Costo total:</string>
     <string name="cerrar">Cerrar</string>
+
+    <string name="error_correo">Ingresá un correo electrónico válido</string>
+    <string name="error_contrasena">Ingresá tu contraseña</string>
+    <string name="accion_instalar">Instalar</string>
+    <string name="estado_instalado">Instalado</string>
+    <string name="juego_instalado">%1$s marcado como instalado</string>
+    <string name="juego_desinstalado">%1$s marcado como no instalado</string>
+    <string name="juego_a_deseados">%1$s agregado a deseados</string>
+    <string name="juego_de_deseados">%1$s quitado de deseados</string>
+    <string name="tienda_proximamente">La sección Tienda se encuentra en desarrollo</string>
 </resources>
