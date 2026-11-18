@@ -68,19 +68,15 @@ class BibliotecaActivity : ComponentActivity() {
             override fun afterTextChanged(s: Editable?) = Unit
         })
 
-        findViewById<View>(R.id.navInicioBiblioteca).setOnClickListener { finish() }
-        findViewById<View>(R.id.navTiendaBiblioteca).setOnClickListener {
-            Toast.makeText(this, R.string.tienda_proximamente, Toast.LENGTH_SHORT).show()
-        }
-        CarritoDialog.actualizarBadge(this)
-        findViewById<View>(R.id.btnCarrito).setOnClickListener {
-            CarritoDialog.mostrar(this)
-        }
-        findViewById<View>(R.id.btnNotificaciones).setOnClickListener {
-            Toast.makeText(this, R.string.notificaciones, Toast.LENGTH_SHORT).show()
-        }
+        // Encabezado (notificaciones, carrito, perfil) y barra de abajo
+        Navegacion.configurar(this, Navegacion.BIBLIOTECA)
 
         actualizarBiblioteca(filtroTodos, filtroInstalados, filtroDeseados)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        CarritoDialog.actualizarBadge(this)
     }
 
     private fun actualizarBiblioteca(
