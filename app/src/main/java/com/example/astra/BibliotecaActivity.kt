@@ -24,10 +24,10 @@ class BibliotecaActivity : ComponentActivity() {
     private enum class Filtro { TODOS, INSTALADOS, DESEADOS }
 
     private val juegos = mutableListOf(
-        Juego("Hollow Knight", "Metroidvania", R.drawable.hollow, instalado = true, deseado = false),
-        Juego("Stardew Valley", "Simulación", R.drawable.stardew_valley, instalado = false, deseado = true),
-        Juego("Call of Duty", "Acción | FPS", R.drawable.callofdutty, instalado = true, deseado = false),
-        Juego("Terraria", "Aventura | Sandbox", R.drawable.terraria, instalado = false, deseado = true)
+        Juego("Celeste", "Plataformas", R.drawable.celeste_library, instalado = false, deseado = true),
+        Juego("Cyberpunk 2077", "RPG", R.drawable.cyberpunk_library, instalado = true, deseado = false),
+        Juego("Dead Cells", "Roguelike", R.drawable.dead_cells_library, instalado = true, deseado = false),
+        Juego("God of War", "Aventura | Acción", R.drawable.god_of_war_library, instalado = false, deseado = false)
     )
 
     private lateinit var contenedor: LinearLayout
@@ -72,6 +72,13 @@ class BibliotecaActivity : ComponentActivity() {
         findViewById<View>(R.id.navTiendaBiblioteca).setOnClickListener {
             Toast.makeText(this, R.string.tienda_proximamente, Toast.LENGTH_SHORT).show()
         }
+        CarritoDialog.actualizarBadge(this)
+        findViewById<View>(R.id.btnCarrito).setOnClickListener {
+            CarritoDialog.mostrar(this)
+        }
+        findViewById<View>(R.id.btnNotificaciones).setOnClickListener {
+            Toast.makeText(this, R.string.notificaciones, Toast.LENGTH_SHORT).show()
+        }
 
         actualizarBiblioteca(filtroTodos, filtroInstalados, filtroDeseados)
     }
@@ -115,7 +122,10 @@ class BibliotecaActivity : ComponentActivity() {
         val tarjeta = LayoutInflater.from(this)
             .inflate(R.layout.item_biblioteca_juego, contenedor, false)
 
-        tarjeta.findViewById<android.widget.ImageView>(R.id.imgJuegoBiblioteca).setImageResource(juego.imagen)
+        tarjeta.findViewById<android.widget.ImageView>(R.id.imgJuegoBiblioteca).apply {
+            setImageResource(juego.imagen)
+            contentDescription = juego.nombre
+        }
         tarjeta.findViewById<TextView>(R.id.tvNombreJuegoBiblioteca).text = juego.nombre
         tarjeta.findViewById<TextView>(R.id.tvGeneroJuegoBiblioteca).text = juego.genero
 

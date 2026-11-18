@@ -39,13 +39,20 @@
     <string name="costo_total">Costo total:</string>
     <string name="cerrar">Cerrar</string>
 
-    <string name="error_correo">Ingresá un correo electrónico válido</string>
+    <string name="error_usuario">Ingresá tu usuario</string>
     <string name="error_contrasena">Ingresá tu contraseña</string>
+    <string name="error_credenciales">El usuario o la contraseña no son correctos</string>
     <string name="accion_instalar">Instalar</string>
     <string name="estado_instalado">Instalado</string>
     <string name="juego_instalado">%1$s marcado como instalado</string>
     <string name="juego_desinstalado">%1$s marcado como no instalado</string>
     <string name="juego_a_deseados">%1$s agregado a deseados</string>
     <string name="juego_de_deseados">%1$s quitado de deseados</string>
+    <string name="juego_ya_en_carrito">%1$s ya está en el carrito</string>
+    <string name="juego_eliminado">%1$s eliminado del carrito</string>
     <string name="tienda_proximamente">La sección Tienda se encuentra en desarrollo</string>
+    <string name="google_no_configurado">El acceso con Google todavía no está configurado</string>
+    <string name="notificaciones">Notificaciones</string>
+    <string name="mostrar_contrasena">Mostrar contraseña</string>
+    <string name="ocultar_contrasena">Ocultar contraseña</string>
 </resources>
