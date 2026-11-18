@@ -17,6 +17,7 @@ public class Navegacion {
     public static final int TIENDA = 1;
     public static final int BIBLIOTECA = 2;
 
+    // Se llama una vez en el onCreate de cada pantalla
     public static void configurar(Activity activity, int actual) {
         configurarEncabezado(activity);
         configurarBarra(activity, actual);
@@ -81,12 +82,13 @@ public class Navegacion {
                 irA(activity, TiendaActivity.class);
                 break;
             case BIBLIOTECA:
-                // TODO (Camila): reemplazar por la BibliotecaActivity cuando exista
-                Toast.makeText(activity, R.string.proximamente, Toast.LENGTH_SHORT).show();
+                irA(activity, BibliotecaActivity.class);
                 break;
         }
     }
 
+    // CLEAR_TOP + SINGLE_TOP: si la pantalla ya estaba abierta vuelve a ella
+    // en vez de apilar otra encima
     private static void irA(Activity activity, Class<?> destino) {
         Intent intent = new Intent(activity, destino);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);

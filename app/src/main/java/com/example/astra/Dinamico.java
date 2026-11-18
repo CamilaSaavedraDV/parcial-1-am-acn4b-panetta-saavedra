@@ -1,46 +1,25 @@
 package com.example.astra;
 
 import android.app.Activity;
-import android.app.Dialog;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
+import android.content.Intent;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.Locale;
-
 public class Dinamico {
 
-    private static final String[] JUEGOS = {
-            "Hollow Knight",
-            "Stardew Valley",
-            "Call of Duty",
-            "Terraria"
-    };
-
-    private static final String[] GENEROS = {
-            "Metroidvania",
-            "Simulación",
-            "Acción | FPS",
-            "Aventura | Sandbox"
-    };
-
-    private static final double[] PRECIOS = {
-            8.99,
-            11.24,
-            9.89,
-            4.99
+    private static final Juego[] OFERTAS = {
+            new Juego("Hollow Knight", "Aventura | Metroidvania", 8.99, "hollow"),
+            new Juego("Stardew Valley", "Simulador | RPG", 11.24, "stardew_valley"),
+            new Juego("Call of Duty", "Acción | FPS", 38.99, "callofdutty"),
+            new Juego("Terraria", "Aventura | Sandbox", 4.99, "terraria")
     };
 
     private static final String[] DESCUENTOS = {
@@ -50,41 +29,19 @@ public class Dinamico {
             "-50%"
     };
 
-    private static final int[] IMAGENES = {
-            R.drawable.hollow,
-            R.drawable.stardew_valley,
-            R.drawable.callofdutty,
-            R.drawable.terraria
-    };
-
-    // Posiciones (indices de los arrays de arriba) de los juegos agregados al carrito
-    private static final ArrayList<Integer> carrito = new ArrayList<>();
-
-    private static TextView badgeCarrito;
-
     public static void iniciar(Activity activity) {
 
         LinearLayout contenedor = activity.findViewById(R.id.contenedorOfertas);
         EditText buscador = activity.findViewById(R.id.buscador);
         TextView verTodos = activity.findViewById(R.id.verTodos);
-        ImageView btnNotificaciones = activity.findViewById(R.id.btnNotificaciones);
-        ImageView btnCarrito = activity.findViewById(R.id.btnCarrito);
-        badgeCarrito = activity.findViewById(R.id.tvBadgeCarrito);
 
-        actualizarBadge();
         cargarOfertas(activity, contenedor);
         configurarBuscador(buscador, contenedor);
 
         verTodos.setOnClickListener(v -> {
             buscador.setText("");
-            Toast.makeText(activity, "Mostrando todos los juegos", Toast.LENGTH_SHORT).show();
+            Toast.makeText(activity, R.string.ver_todos_mensaje, Toast.LENGTH_SHORT).show();
         });
-
-        btnNotificaciones.setOnClickListener(v -> {
-            Toast.makeText(activity, "Notificaciones", Toast.LENGTH_SHORT).show();
-        });
-
-        btnCarrito.setOnClickListener(v -> mostrarCarrito(activity));
     }
 
     private static void cargarOfertas(Activity activity, LinearLayout contenedor) {
@@ -93,7 +50,7 @@ public class Dinamico {
 
         LinearLayout fila = null;
 
-        for (int i = 0; i < JUEGOS.length; i++) {
+        for (int i = 0; i < OFERTAS.length; i++) {
 
             if (i % 2 == 0) {
 
@@ -112,6 +69,8 @@ public class Dinamico {
                 contenedor.addView(fila, filaParams);
             }
 
+            final Juego juego = OFERTAS[i];
+
             View tarjeta = LayoutInflater.from(activity)
                     .inflate(R.layout.item_oferta, fila, false);
 
@@ -122,41 +81,37 @@ public class Dinamico {
             TextView precio = tarjeta.findViewById(R.id.tvPrecio);
             TextView agregar = tarjeta.findViewById(R.id.btnAgregarJuego);
 
-            imagen.setImageResource(IMAGENES[i]);
-            nombre.setText(JUEGOS[i]);
-            genero.setText(GENEROS[i]);
+            imagen.setImageResource(juego.getImagenRes(activity));
+            nombre.setText(juego.getNombre());
+            genero.setText(juego.getGenero());
             descuento.setText(DESCUENTOS[i]);
-            precio.setText("$ " + PRECIOS[i]);
-
-            final int posicion = i;
+            precio.setText(juego.getPrecioTexto());
 
             agregar.setOnClickListener(v -> {
-                if (carrito.contains(posicion)) {
+                if (!Carrito.agregar(juego)) {
                     Toast.makeText(
                             activity,
-                            JUEGOS[posicion] + " ya está en el carrito",
+                            activity.getString(R.string.juego_ya_en_carrito, juego.getNombre()),
                             Toast.LENGTH_SHORT
                     ).show();
                     return;
                 }
 
-                carrito.add(posicion);
-                actualizarBadge();
+                CarritoDialog.actualizarBadge(activity);
 
                 Toast.makeText(
                         activity,
-                        JUEGOS[posicion] + " agregado al carrito",
+                        activity.getString(R.string.juego_agregado, juego.getNombre()),
                         Toast.LENGTH_SHORT
                 ).show();
             });
 
-            tarjeta.setOnClickListener(v ->
-                    Toast.makeText(
-                            activity,
-                            JUEGOS[posicion],
-                            Toast.LENGTH_SHORT
-                    ).show()
-            );
+            // Pasa el juego a la pantalla de detalle con un extra
+            tarjeta.setOnClickListener(v -> {
+                Intent intent = new Intent(activity, DetalleJuegoActivity.class);
+                intent.putExtra(DetalleJuegoActivity.EXTRA_JUEGO, juego);
+                activity.startActivity(intent);
+            });
 
             LinearLayout.LayoutParams tarjetaParams =
                     new LinearLayout.LayoutParams(
@@ -171,98 +126,6 @@ public class Dinamico {
         }
     }
 
-    private static void actualizarBadge() {
-
-        if (badgeCarrito == null) {
-            return;
-        }
-
-        int cantidad = carrito.size();
-
-        badgeCarrito.setText(String.valueOf(cantidad));
-        badgeCarrito.setVisibility(cantidad > 0 ? View.VISIBLE : View.GONE);
-    }
-
-    private static String formatearPrecio(double valor) {
-        return String.format(Locale.US, "$ %.2f", valor);
-    }
-
-    private static void mostrarCarrito(Activity activity) {
-
-        Dialog dialog = new Dialog(activity);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.dialog_carrito);
-
-        LinearLayout lista = dialog.findViewById(R.id.contenedorCarrito);
-        TextView vacio = dialog.findViewById(R.id.tvCarritoVacio);
-        TextView total = dialog.findViewById(R.id.tvTotalCarrito);
-        TextView cerrar = dialog.findViewById(R.id.btnCerrarCarrito);
-
-        cerrar.setOnClickListener(v -> dialog.dismiss());
-
-        refrescarCarrito(activity, lista, vacio, total);
-
-        dialog.show();
-
-        Window window = dialog.getWindow();
-
-        if (window != null) {
-            window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-            int ancho = (int) (activity.getResources()
-                    .getDisplayMetrics().widthPixels * 0.88);
-
-            window.setLayout(ancho, ViewGroup.LayoutParams.WRAP_CONTENT);
-        }
-    }
-
-    private static void refrescarCarrito(
-            Activity activity,
-            LinearLayout lista,
-            TextView vacio,
-            TextView totalView
-    ) {
-
-        lista.removeAllViews();
-
-        double total = 0;
-
-        for (int k = 0; k < carrito.size(); k++) {
-
-            final int juego = carrito.get(k);
-
-            View item = LayoutInflater.from(activity)
-                    .inflate(R.layout.item_carrito_juego, lista, false);
-
-            TextView nombre = item.findViewById(R.id.tvNombreCarrito);
-            TextView precio = item.findViewById(R.id.tvPrecioCarrito);
-            ImageView eliminar = item.findViewById(R.id.btnEliminarJuego);
-
-            nombre.setText(JUEGOS[juego]);
-            precio.setText(formatearPrecio(PRECIOS[juego]));
-
-            eliminar.setOnClickListener(v -> {
-                // Integer.valueOf para borrar el juego y no la posicion de la lista
-                carrito.remove(Integer.valueOf(juego));
-                actualizarBadge();
-                refrescarCarrito(activity, lista, vacio, totalView);
-
-                Toast.makeText(
-                        activity,
-                        JUEGOS[juego] + " eliminado del carrito",
-                        Toast.LENGTH_SHORT
-                ).show();
-            });
-
-            lista.addView(item);
-
-            total += PRECIOS[juego];
-        }
-
-        vacio.setVisibility(carrito.isEmpty() ? View.VISIBLE : View.GONE);
-        totalView.setText(formatearPrecio(total));
-    }
-
     private static void configurarBuscador(
             EditText buscador,
             LinearLayout contenedor
@@ -271,58 +134,33 @@ public class Dinamico {
         buscador.addTextChangedListener(new TextWatcher() {
 
             @Override
-            public void beforeTextChanged(
-                    CharSequence s,
-                    int start,
-                    int count,
-                    int after
-            ) {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
 
             @Override
-            public void onTextChanged(
-                    CharSequence s,
-                    int start,
-                    int before,
-                    int count
-            ) {
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
 
                 String texto = s.toString().trim().toLowerCase();
 
-                for (int filaIndex = 0;
-                     filaIndex < contenedor.getChildCount();
-                     filaIndex++) {
+                for (int filaIndex = 0; filaIndex < contenedor.getChildCount(); filaIndex++) {
 
-                    LinearLayout fila =
-                            (LinearLayout) contenedor.getChildAt(filaIndex);
+                    LinearLayout fila = (LinearLayout) contenedor.getChildAt(filaIndex);
 
-                    for (int tarjetaIndex = 0;
-                         tarjetaIndex < fila.getChildCount();
-                         tarjetaIndex++) {
+                    for (int tarjetaIndex = 0; tarjetaIndex < fila.getChildCount(); tarjetaIndex++) {
 
-                        View tarjeta =
-                                fila.getChildAt(tarjetaIndex);
+                        View tarjeta = fila.getChildAt(tarjetaIndex);
 
-                        int posicion =
-                                filaIndex * 2 + tarjetaIndex;
+                        int posicion = filaIndex * 2 + tarjetaIndex;
 
-                        if (posicion >= JUEGOS.length) {
+                        if (posicion >= OFERTAS.length) {
                             continue;
                         }
 
                         boolean coincide =
-                                JUEGOS[posicion]
-                                        .toLowerCase()
-                                        .contains(texto)
-                                        || GENEROS[posicion]
-                                        .toLowerCase()
-                                        .contains(texto);
+                                OFERTAS[posicion].getNombre().toLowerCase().contains(texto)
+                                        || OFERTAS[posicion].getGenero().toLowerCase().contains(texto);
 
-                        tarjeta.setVisibility(
-                                coincide
-                                        ? View.VISIBLE
-                                        : View.GONE
-                        );
+                        tarjeta.setVisibility(coincide ? View.VISIBLE : View.GONE);
                     }
                 }
             }
