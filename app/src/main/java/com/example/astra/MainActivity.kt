@@ -10,5 +10,11 @@ class MainActivity : ComponentActivity() {
         setContentView(R.layout.activity_main)
 
         Dinamico.iniciar(this)
+        Navegacion.configurar(this, Navegacion.INICIO)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        CarritoDialog.actualizarBadge(this)
     }
 }
