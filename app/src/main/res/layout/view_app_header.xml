@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="55dp">
+
+    <ImageView
+        android:id="@+id/logoEstrella"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:contentDescription="@string/logo"
+        android:scaleType="fitCenter"
+        android:src="@drawable/estrella_logo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/logoAstra"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:text="ASTRA"
+        android:textColor="@color/acento"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/logoEstrella"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/btnNotificaciones"
+        android:layout_width="22dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="12dp"
+        android:contentDescription="@string/desc_notificaciones"
+        android:scaleType="centerInside"
+        android:src="@drawable/bell"
+        android:tint="@color/texto_principal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnCarrito"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/btnCarrito"
+        android:layout_width="22dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="12dp"
+        android:contentDescription="@string/desc_carrito"
+        android:scaleType="centerInside"
+        android:src="@drawable/shopping_cart"
+        android:tint="@color/texto_principal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/btnPerfil"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvBadgeCarrito"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="2dp"
+        android:background="@drawable/bg_badge"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:text="0"
+        android:textColor="@color/texto_principal"
+        android:textSize="8sp"
+        android:textStyle="bold"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@id/btnCarrito"
+        app:layout_constraintTop_toTopOf="@id/btnCarrito" />
+
+    <ImageView
+        android:id="@+id/btnPerfil"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:contentDescription="@string/desc_perfil"
+        android:scaleType="centerCrop"
+        android:src="@drawable/perfil_logo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

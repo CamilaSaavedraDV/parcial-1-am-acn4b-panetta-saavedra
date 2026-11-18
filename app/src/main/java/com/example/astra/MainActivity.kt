@@ -1,6 +1,8 @@
 package com.example.astra
 
 import android.os.Bundle
+import android.content.Intent
+import android.view.View
 import androidx.activity.ComponentActivity
 
 class MainActivity : ComponentActivity() {
@@ -10,11 +12,9 @@ class MainActivity : ComponentActivity() {
         setContentView(R.layout.activity_main)
 
         Dinamico.iniciar(this)
-        Navegacion.configurar(this, Navegacion.INICIO)
-    }
 
-    override fun onResume() {
-        super.onResume()
-        CarritoDialog.actualizarBadge(this)
+        findViewById<View>(R.id.navBiblioteca).setOnClickListener {
+            startActivity(Intent(this, BibliotecaActivity::class.java))
+        }
     }
 }
